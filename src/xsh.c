@@ -46,6 +46,12 @@ char *expand_var(const char *arg) {
 }
 
 int main() {
+    if (!isatty(STDIN_FILENO)) {
+        char *args[] = {argv[0], NULL};
+        execvp(argv[0], args);
+        perror("execvp");
+        return 1;
+    }
     prctl(PR_SET_NAME, "xsh", 0, 0, 0);
     char input[MAX_INPUT];
     char *args[MAX_ARGS];
