@@ -45,6 +45,7 @@ char *expand_var(const char *arg) {
 }
 
 int main() {
+    prctl(PR_SET_NAME, "xsh", 0, 0, 0);
     char input[MAX_INPUT];
     char *args[MAX_ARGS];
 
