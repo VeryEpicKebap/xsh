@@ -45,7 +45,7 @@ char *expand_var(const char *arg) {
     return result;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) {
     if (!isatty(STDIN_FILENO)) {
         char *args[] = {argv[0], NULL};
         execvp(argv[0], args);
@@ -67,13 +67,13 @@ int main(int argc, char *argv[])
         input[strcspn(input, "\n")] = '\0';
         if (strlen(input) == 0) continue;
 
-        int argc = 0;
+        int argcount = 0;
         char *token = strtok(input, " \t");
-        while (token && argc < MAX_ARGS - 1) {
-            args[argc++] = strdup(expand_var(token));
+        while (token && argcount < MAX_ARGS - 1) {
+            args[argcount++] = strdup(expand_var(token));
             token = strtok(NULL, " \t");
         }
-        args[argc] = NULL;
+        args[argcount] = NULL;
 
         if (args[0] == NULL) continue;
 
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
             perror("fork");
         }
 
-        for (int i = 0; i < argc; i++) {
+        for (int i = 0; i < argcount; i++) {
             free(args[i]);
         }
     }
