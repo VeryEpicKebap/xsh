@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <ctype.h>
+#include <sys/prctl.h>
 
 #define MAX_INPUT 1024
 #define MAX_ARGS 64
