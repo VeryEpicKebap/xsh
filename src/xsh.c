@@ -45,7 +45,7 @@ char *expand_var(const char *arg) {
     return result;
 }
 
-int main() {
+int main(int argc, char *argv[])
     if (!isatty(STDIN_FILENO)) {
         char *args[] = {argv[0], NULL};
         execvp(argv[0], args);
